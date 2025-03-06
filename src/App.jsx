@@ -4,12 +4,14 @@ import MovieDetails from './components/MovieDetails';
 
 const App = () => {
 	return (
-		<div className='inline-grid p-2 w-full'>
-			<Routes>
-				<Route path='/' element={<Home />} />
-				<Route path='/movie/:id' element={<MovieDetails />} />
-			</Routes>
-		</div>
+		<>
+			<div className='inline-grid p-4 w-full'>
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='/movie/:id' element={<MovieDetails />} />
+				</Routes>
+			</div>
+		</>
 	);
 };
 
