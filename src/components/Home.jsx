@@ -1,20 +1,11 @@
 // Search bar that call API after a certain amount of time using debounce to provide a list of movies based off of what user has input. If a user search doesn't
 // match an exact title a list of movies that include the search will be displayed
-import { Button } from './ui/button';
-import { Input } from './ui/input';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input.jsx';
+import ComboBox from './ComboBox';
 import TopTen from './TopTen';
 
 export default function Home() {
-	// Need to create components that will replace the title, when chosen the current homepage choice will change.
-	// All will be replaced when search is done by user.
-	function DesktopMenu() {
-		// This will be for the desktop PopOver component
-	}
-
-	function MobileMenu() {
-		// This will be for the mobile Drawer component
-	}
-
 	return (
 		<>
 			<div className='flex flex-col w-full text-center'>
@@ -30,10 +21,8 @@ export default function Home() {
 				</div>
 			</div>
 			<div className='mt-5'>
-				{/* Going to replace this with a schadcn ComboBox component that will be responsive for mobile and desktop use. */}
-				{/* Will have 3 options, IMDb top 10, Top Grossing, and Top Marvel. */}
-				<div className='flex justify-center'>
-					<h1 className='text-lg font-semibold mb-4'>IMDb Top 10</h1>
+				<div className='flex justify-center mb-4'>
+					<ComboBox />
 				</div>
 				<TopTen />
 			</div>
