@@ -3,7 +3,6 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input.jsx';
 import ComboBox from './ComboBox';
-import TopTen from './TopTen';
 
 export default function Home() {
 	return (
@@ -12,7 +11,11 @@ export default function Home() {
 				<h1 className='text-2xl font-semibold mb-4 underline underline-offset-5'>
 					Media Finder
 				</h1>
-				<Input className='mb-2' type='text' placeholder='Search...' />
+				<Input
+					className='mb-2 md:w-100 lg:w-160 ml-auto mr-auto'
+					type='text'
+					placeholder='Search...'
+				/>
 				<div className='flex justify-center'>
 					{/* Attach a handleSearch function that returns searched for show*/}
 					<Button className='w-20 m-1'>Search</Button>
@@ -20,12 +23,7 @@ export default function Home() {
 					<Button className='w-30 m-1 bg-primary'>Surprise Me!</Button>
 				</div>
 			</div>
-			<div className='mt-5'>
-				<div className='flex justify-center mb-4'>
-					<ComboBox />
-				</div>
-				<TopTen />
-			</div>
+			<ComboBox />
 		</>
 	);
 }

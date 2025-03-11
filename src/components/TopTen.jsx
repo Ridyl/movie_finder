@@ -13,10 +13,9 @@ import Rotten from './svg/rotten.svg';
 import Meta from './svg/meta.svg';
 import { useState } from 'react';
 
-export default function TopTen() {
+export default function TopTen({ movieCat, movieSearch }) {
 	const [expandIndex, setExpandIndex] = useState(null);
-
-	const top = [
+	const imdb = [
 		{
 			Title: 'The Shawshank Redemption',
 			Year: '1994',
@@ -338,75 +337,731 @@ export default function TopTen() {
 			Response: 'True',
 		},
 	];
+	const marvel = [
+		{
+			Title: 'Black Panther',
+			Year: '2018',
+			Rated: 'PG-13',
+			Released: '16 Feb 2018',
+			Runtime: '134 min',
+			Genre: 'Action, Adventure, Sci-Fi',
+			Director: 'Ryan Coogler',
+			Writer: 'Ryan Coogler, Joe Robert Cole, Stan Lee',
+			Actors: "Chadwick Boseman, Michael B. Jordan, Lupita Nyong'o",
+			Plot: "T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country's past.",
+			Language: 'English, Swahili, Nama, Xhosa, Korean',
+			Country: 'United States',
+			Awards: 'Won 3 Oscars. 124 wins & 290 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BMTg1MTY2MjYzNV5BMl5BanBnXkFtZTgwMTc4NTMwNDI@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '7.3/10' },
+				{ Source: 'Rotten Tomatoes', Value: '96%' },
+				{ Source: 'Metacritic', Value: '88/100' },
+			],
+			Metascore: '88',
+			imdbRating: '7.3',
+			imdbVotes: '859,088',
+			imdbID: 'tt1825683',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$700,426,566',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Avengers: Endgame',
+			Year: '2019',
+			Rated: 'PG-13',
+			Released: '26 Apr 2019',
+			Runtime: '181 min',
+			Genre: 'Action, Adventure, Drama',
+			Director: 'Anthony Russo, Joe Russo',
+			Writer: 'Christopher Markus, Stephen McFeely, Stan Lee',
+			Actors: 'Robert Downey Jr., Chris Evans, Mark Ruffalo',
+			Plot: "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+			Language: 'English, Japanese, Xhosa, German',
+			Country: 'United States',
+			Awards: 'Nominated for 1 Oscar. 70 wins & 133 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '8.4/10' },
+				{ Source: 'Rotten Tomatoes', Value: '94%' },
+				{ Source: 'Metacritic', Value: '78/100' },
+			],
+			Metascore: '78',
+			imdbRating: '8.4',
+			imdbVotes: '1,328,385',
+			imdbID: 'tt4154796',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$858,373,000',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Iron Man',
+			Year: '2008',
+			Rated: 'PG-13',
+			Released: '02 May 2008',
+			Runtime: '126 min',
+			Genre: 'Action, Adventure, Sci-Fi',
+			Director: 'Jon Favreau',
+			Writer: 'Mark Fergus, Hawk Ostby, Art Marcum',
+			Actors: 'Robert Downey Jr., Gwyneth Paltrow, Terrence Howard',
+			Plot: 'After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.',
+			Language: 'English, Persian, Urdu, Arabic, Kurdish, Hindi, Hungarian',
+			Country: 'United States, Canada',
+			Awards: 'Nominated for 2 Oscars. 24 wins & 73 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BMTczNTI2ODUwOF5BMl5BanBnXkFtZTcwMTU0NTIzMw@@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '7.9/10' },
+				{ Source: 'Rotten Tomatoes', Value: '94%' },
+				{ Source: 'Metacritic', Value: '79/100' },
+			],
+			Metascore: '79',
+			imdbRating: '7.9',
+			imdbVotes: '1,153,009',
+			imdbID: 'tt0371746',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$319,034,126',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Thor: Ragnarok',
+			Year: '2017',
+			Rated: 'PG-13',
+			Released: '03 Nov 2017',
+			Runtime: '130 min',
+			Genre: 'Action, Adventure, Comedy',
+			Director: 'Taika Waititi',
+			Writer: 'Eric Pearson, Craig Kyle, Christopher L. Yost',
+			Actors: 'Chris Hemsworth, Tom Hiddleston, Cate Blanchett',
+			Plot: 'Imprisoned on the planet Sakaar, Thor must race against time to return to Asgard and stop Ragnarök, the destruction of his world, at the hands of the powerful and ruthless villain Hela.',
+			Language: 'English',
+			Country: 'United States',
+			Awards: '6 wins & 50 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BMjMyNDkzMzI1OF5BMl5BanBnXkFtZTgwODcxODg5MjI@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '7.9/10' },
+				{ Source: 'Rotten Tomatoes', Value: '93%' },
+				{ Source: 'Metacritic', Value: '74/100' },
+			],
+			Metascore: '74',
+			imdbRating: '7.9',
+			imdbVotes: '847,498',
+			imdbID: 'tt3501632',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$315,058,289',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Spider-Man: No Way Home',
+			Year: '2021',
+			Rated: 'PG-13',
+			Released: '17 Dec 2021',
+			Runtime: '148 min',
+			Genre: 'Action, Adventure, Fantasy',
+			Director: 'Jon Watts',
+			Writer: 'Chris McKenna, Erik Sommers, Stan Lee',
+			Actors: 'Tom Holland, Zendaya, Benedict Cumberbatch',
+			Plot: "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear.",
+			Language: 'English',
+			Country: 'United States',
+			Awards: 'Nominated for 1 Oscar. 35 wins & 71 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BMmFiZGZjMmEtMTA0Ni00MzA2LTljMTYtZGI2MGJmZWYzZTQ2XkEyXkFqcGc@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '8.2/10' },
+				{ Source: 'Rotten Tomatoes', Value: '93%' },
+				{ Source: 'Metacritic', Value: '71/100' },
+			],
+			Metascore: '71',
+			imdbRating: '8.2',
+			imdbVotes: '931,409',
+			imdbID: 'tt10872600',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$814,866,759',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Spider-Man: Homecoming',
+			Year: '2017',
+			Rated: 'PG-13',
+			Released: '07 Jul 2017',
+			Runtime: '133 min',
+			Genre: 'Action, Adventure, Sci-Fi',
+			Director: 'Jon Watts',
+			Writer: 'Jonathan Goldstein, John Francis Daley, Jon Watts',
+			Actors: 'Tom Holland, Michael Keaton, Robert Downey Jr.',
+			Plot: "Peter Parker tries to stop Adrian 'The Vulture' Toomes from selling weapons made with advanced Chitauri technology while trying to balance his life as an ordinary high school student.",
+			Language: 'English, Spanish',
+			Country: 'United States',
+			Awards: '8 wins & 10 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BODY2MTAzOTQ4M15BMl5BanBnXkFtZTgwNzg5MTE0MjI@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '7.4/10' },
+				{ Source: 'Rotten Tomatoes', Value: '92%' },
+				{ Source: 'Metacritic', Value: '73/100' },
+			],
+			Metascore: '73',
+			imdbRating: '7.4',
+			imdbVotes: '747,042',
+			imdbID: 'tt2250912',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$334,952,829',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Shang-Chi and the Legend of the Ten Rings',
+			Year: '2021',
+			Rated: 'PG-13',
+			Released: '03 Sep 2021',
+			Runtime: '132 min',
+			Genre: 'Action, Adventure, Fantasy',
+			Director: 'Destin Daniel Cretton',
+			Writer: 'Dave Callaham, Destin Daniel Cretton, Andrew Lanham',
+			Actors: 'Simu Liu, Awkwafina, Tony Leung Chiu-wai',
+			Plot: 'Shang-Chi, the master of weaponry-based Kung Fu, is forced to confront his past after being drawn into the Ten Rings organization.',
+			Language: 'English, Mandarin',
+			Country: 'United States',
+			Awards: 'Nominated for 1 Oscar. 19 wins & 67 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BZmY5MDcyNzAtYzg3MC00MGNlLTg3OGItNmRjYThkZGVlNzAyXkEyXkFqcGc@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '7.3/10' },
+				{ Source: 'Rotten Tomatoes', Value: '92%' },
+				{ Source: 'Metacritic', Value: '71/100' },
+			],
+			Metascore: '71',
+			imdbRating: '7.3',
+			imdbVotes: '455,465',
+			imdbID: 'tt9376612',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$224,543,292',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Guardians of the Galaxy',
+			Year: '2014',
+			Rated: 'PG-13',
+			Released: '01 Aug 2014',
+			Runtime: '121 min',
+			Genre: 'Action, Adventure, Comedy',
+			Director: 'James Gunn',
+			Writer: 'James Gunn, Nicole Perlman, Dan Abnett',
+			Actors: 'Chris Pratt, Vin Diesel, Bradley Cooper',
+			Plot: 'A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe.',
+			Language: 'English',
+			Country: 'United States, United Kingdom',
+			Awards: 'Nominated for 2 Oscars. 52 wins & 103 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BM2ZmNjQ2MzAtNDlhNi00MmQyLWJhZDMtNmJiMjFlOWY4MzcxXkEyXkFqcGc@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '8.0/10' },
+				{ Source: 'Rotten Tomatoes', Value: '92%' },
+				{ Source: 'Metacritic', Value: '76/100' },
+			],
+			Metascore: '76',
+			imdbRating: '8.0',
+			imdbVotes: '1,306,633',
+			imdbID: 'tt2015381',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$333,718,600',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Spider-Man: Far from Home',
+			Year: '2019',
+			Rated: 'PG-13',
+			Released: '02 Jul 2019',
+			Runtime: '129 min',
+			Genre: 'Action, Adventure, Comedy',
+			Director: 'Jon Watts',
+			Writer: 'Chris McKenna, Erik Sommers, Stan Lee',
+			Actors: 'Tom Holland, Samuel L. Jackson, Jake Gyllenhaal',
+			Plot: 'Peter Parker, the beloved superhero Spider-Man, faces four destructive elemental monsters while on holiday in Europe. Soon, he receives help from Mysterio, a fellow hero with mysterious origins.',
+			Language: 'English, Italian, Czech',
+			Country: 'United States, Czech Republic, Australia, Canada, Italy',
+			Awards: '11 wins & 26 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BMzNhNTE0NWQtN2E1Ny00NjcwLTg1YTctMGY1NmMwODJmY2NmXkEyXkFqcGc@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '7.4/10' },
+				{ Source: 'Rotten Tomatoes', Value: '91%' },
+				{ Source: 'Metacritic', Value: '69/100' },
+			],
+			Metascore: '69',
+			imdbRating: '7.4',
+			imdbVotes: '586,806',
+			imdbID: 'tt6320628',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$391,283,774',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'The Avengers',
+			Year: '2012',
+			Rated: 'PG-13',
+			Released: '04 May 2012',
+			Runtime: '143 min',
+			Genre: 'Action, Sci-Fi',
+			Director: 'Joss Whedon',
+			Writer: 'Joss Whedon, Zak Penn',
+			Actors: 'Robert Downey Jr., Chris Evans, Scarlett Johansson',
+			Plot: "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
+			Language: 'English, Russian',
+			Country: 'United States',
+			Awards: 'Nominated for 1 Oscar. 39 wins & 81 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BNGE0YTVjNzUtNzJjOS00NGNlLTgxMzctZTY4YTE1Y2Y1ZTU4XkEyXkFqcGc@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '8.0/10' },
+				{ Source: 'Rotten Tomatoes', Value: '91%' },
+				{ Source: 'Metacritic', Value: '69/100' },
+			],
+			Metascore: '69',
+			imdbRating: '8.0',
+			imdbVotes: '1,495,259',
+			imdbID: 'tt0848228',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$623,357,910',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+	];
+	const gross = [
+		{
+			Title: 'Avatar',
+			Year: '2009',
+			Rated: 'PG-13',
+			Released: '18 Dec 2009',
+			Runtime: '162 min',
+			Genre: 'Action, Adventure, Fantasy',
+			Director: 'James Cameron',
+			Writer: 'James Cameron',
+			Actors: 'Sam Worthington, Zoe Saldaña, Sigourney Weaver',
+			Plot: 'A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.',
+			Language: 'English, Spanish',
+			Country: 'United States, United Kingdom',
+			Awards: 'Won 3 Oscars. 91 wins & 131 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BMDEzMmQwZjctZWU2My00MWNlLWE0NjItMDJlYTRlNGJiZjcyXkEyXkFqcGc@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '7.9/10' },
+				{ Source: 'Rotten Tomatoes', Value: '81%' },
+				{ Source: 'Metacritic', Value: '83/100' },
+			],
+			Metascore: '83',
+			imdbRating: '7.9',
+			imdbVotes: '1,422,820',
+			imdbID: 'tt0499549',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$785,221,649',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Avengers: Endgame',
+			Year: '2019',
+			Rated: 'PG-13',
+			Released: '26 Apr 2019',
+			Runtime: '181 min',
+			Genre: 'Action, Adventure, Drama',
+			Director: 'Anthony Russo, Joe Russo',
+			Writer: 'Christopher Markus, Stephen McFeely, Stan Lee',
+			Actors: 'Robert Downey Jr., Chris Evans, Mark Ruffalo',
+			Plot: "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+			Language: 'English, Japanese, Xhosa, German',
+			Country: 'United States',
+			Awards: 'Nominated for 1 Oscar. 70 wins & 133 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '8.4/10' },
+				{ Source: 'Rotten Tomatoes', Value: '94%' },
+				{ Source: 'Metacritic', Value: '78/100' },
+			],
+			Metascore: '78',
+			imdbRating: '8.4',
+			imdbVotes: '1,328,385',
+			imdbID: 'tt4154796',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$858,373,000',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Avatar: The Way of Water',
+			Year: '2022',
+			Rated: 'PG-13',
+			Released: '16 Dec 2022',
+			Runtime: '192 min',
+			Genre: 'Action, Adventure, Fantasy',
+			Director: 'James Cameron',
+			Writer: 'James Cameron, Rick Jaffa, Amanda Silver',
+			Actors: 'Sam Worthington, Zoe Saldana, Sigourney Weaver',
+			Plot: "Jake Sully lives with his newfound family formed on the extrasolar moon Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their home.",
+			Language: 'English',
+			Country: 'United States',
+			Awards: 'Won 1 Oscar. 75 wins & 152 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BNmQxNjZlZTctMWJiMC00NGMxLWJjNTctNTFiNjA1Njk3ZDQ5XkEyXkFqcGc@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '7.5/10' },
+				{ Source: 'Rotten Tomatoes', Value: '76%' },
+				{ Source: 'Metacritic', Value: '67/100' },
+			],
+			Metascore: '67',
+			imdbRating: '7.5',
+			imdbVotes: '524,426',
+			imdbID: 'tt1630029',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$684,075,767',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Titanic',
+			Year: '1997',
+			Rated: 'PG-13',
+			Released: '19 Dec 1997',
+			Runtime: '194 min',
+			Genre: 'Drama, Romance',
+			Director: 'James Cameron',
+			Writer: 'James Cameron',
+			Actors: 'Leonardo DiCaprio, Kate Winslet, Billy Zane',
+			Plot: 'A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.',
+			Language: 'English, Swedish, Italian, French',
+			Country: 'United States, Mexico',
+			Awards: 'Won 11 Oscars. 126 wins & 83 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '7.9/10' },
+				{ Source: 'Rotten Tomatoes', Value: '88%' },
+				{ Source: 'Metacritic', Value: '75/100' },
+			],
+			Metascore: '75',
+			imdbRating: '7.9',
+			imdbVotes: '1,322,762',
+			imdbID: 'tt0120338',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$674,292,608',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Star Wars: Episode VII - The Force Awakens',
+			Year: '2015',
+			Rated: 'PG-13',
+			Released: '18 Dec 2015',
+			Runtime: '138 min',
+			Genre: 'Action, Adventure, Sci-Fi',
+			Director: 'J.J. Abrams',
+			Writer: 'Lawrence Kasdan, J.J. Abrams, Michael Arndt',
+			Actors: 'Daisy Ridley, John Boyega, Oscar Isaac',
+			Plot: 'As a new threat to the galaxy rises, Rey, a desert scavenger, and Finn, an ex-stormtrooper, must join Han Solo and Chewbacca to search for the one hope of restoring peace.',
+			Language: 'English',
+			Country: 'United States, United Kingdom',
+			Awards: 'Nominated for 5 Oscars. 64 wins & 140 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '7.8/10' },
+				{ Source: 'Rotten Tomatoes', Value: '93%' },
+				{ Source: 'Metacritic', Value: '80/100' },
+			],
+			Metascore: '80',
+			imdbRating: '7.8',
+			imdbVotes: '989,068',
+			imdbID: 'tt2488496',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$936,662,225',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Ne Zha 2',
+			Year: '2025',
+			Rated: 'Not Rated',
+			Released: '29 Jan 2025',
+			Runtime: '143 min',
+			Genre: 'Animation, Drama, Fantasy',
+			Director: 'Yu Yang',
+			Writer: 'Yu Yang',
+			Actors: 'Joseph, Mo Han, Hao Chen',
+			Plot: 'After the catastrophe, although the souls of Nezha and Aobing were saved, their bodies would soon be shattered. Taiyi Zhenren planned to use the seven-colored lotus to rebuild their bodies.',
+			Language: 'Mandarin',
+			Country: 'China',
+			Awards: '1 win total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BZWE5ODNkYjctYTllZi00YmEyLThhZGYtMjIxNTBmZGU1Y2M0XkEyXkFqcGc@._V1_SX300.jpg',
+			Ratings: [{ Source: 'Internet Movie Database', Value: '8.3/10' }],
+			Metascore: 'N/A',
+			imdbRating: '8.3',
+			imdbVotes: '2,052',
+			imdbID: 'tt34956443',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: 'N/A',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Avengers: Infinity War',
+			Year: '2018',
+			Rated: 'PG-13',
+			Released: '27 Apr 2018',
+			Runtime: '149 min',
+			Genre: 'Action, Adventure, Sci-Fi',
+			Director: 'Anthony Russo, Joe Russo',
+			Writer: 'Christopher Markus, Stephen McFeely, Stan Lee',
+			Actors: 'Robert Downey Jr., Chris Hemsworth, Mark Ruffalo',
+			Plot: 'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
+			Language: 'English',
+			Country: 'United States, Norway',
+			Awards: 'Nominated for 1 Oscar. 48 wins & 81 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '8.4/10' },
+				{ Source: 'Rotten Tomatoes', Value: '85%' },
+				{ Source: 'Metacritic', Value: '68/100' },
+			],
+			Metascore: '68',
+			imdbRating: '8.4',
+			imdbVotes: '1,263,980',
+			imdbID: 'tt4154756',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$678,815,482',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Spider-Man: No Way Home',
+			Year: '2021',
+			Rated: 'PG-13',
+			Released: '17 Dec 2021',
+			Runtime: '148 min',
+			Genre: 'Action, Adventure, Fantasy',
+			Director: 'Jon Watts',
+			Writer: 'Chris McKenna, Erik Sommers, Stan Lee',
+			Actors: 'Tom Holland, Zendaya, Benedict Cumberbatch',
+			Plot: "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear.",
+			Language: 'English',
+			Country: 'United States',
+			Awards: 'Nominated for 1 Oscar. 35 wins & 71 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BMmFiZGZjMmEtMTA0Ni00MzA2LTljMTYtZGI2MGJmZWYzZTQ2XkEyXkFqcGc@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '8.2/10' },
+				{ Source: 'Rotten Tomatoes', Value: '93%' },
+				{ Source: 'Metacritic', Value: '71/100' },
+			],
+			Metascore: '71',
+			imdbRating: '8.2',
+			imdbVotes: '931,409',
+			imdbID: 'tt10872600',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$814,866,759',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Inside Out 2',
+			Year: '2024',
+			Rated: 'PG',
+			Released: '14 Jun 2024',
+			Runtime: '96 min',
+			Genre: 'Animation, Adventure, Comedy',
+			Director: 'Kelsey Mann',
+			Writer: 'Meg LeFauve, Dave Holstein, Kelsey Mann',
+			Actors: 'Amy Poehler, Maya Hawke, Kensington Tallman',
+			Plot: 'A sequel that features Riley entering puberty and experiencing brand new, more complex emotions as a result. As Riley tries to adapt to her teenage years, her old emotions try to adapt to the possibility of being replaced.',
+			Language: 'English, French, Spanish',
+			Country: 'United States',
+			Awards: 'Nominated for 1 Oscar. 3 wins & 83 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BYWY3MDE2Y2UtOTE3Zi00MGUzLTg2MTItZjE1ZWVkMGVlODRmXkEyXkFqcGc@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '7.6/10' },
+				{ Source: 'Rotten Tomatoes', Value: '91%' },
+				{ Source: 'Metacritic', Value: '73/100' },
+			],
+			Metascore: '73',
+			imdbRating: '7.6',
+			imdbVotes: '201,664',
+			imdbID: 'tt22022452',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$652,980,194',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+		{
+			Title: 'Jurassic World',
+			Year: '2015',
+			Rated: 'PG-13',
+			Released: '12 Jun 2015',
+			Runtime: '124 min',
+			Genre: 'Action, Adventure, Sci-Fi',
+			Director: 'Colin Trevorrow',
+			Writer: 'Rick Jaffa, Amanda Silver, Colin Trevorrow',
+			Actors: 'Chris Pratt, Bryce Dallas Howard, Ty Simpkins',
+			Plot: 'A new theme park, built on the original site of Jurassic Park, creates a genetically modified hybrid dinosaur, the Indominus Rex, which escapes containment and goes on a killing spree.',
+			Language: 'English',
+			Country: 'United States, Canada',
+			Awards: '15 wins & 58 nominations total',
+			Poster:
+				'https://m.media-amazon.com/images/M/MV5BNzBhNzlkM2UtZTQyOC00NjUyLTkzMmMtNDQ1YTM5N2NmMGE5XkEyXkFqcGc@._V1_SX300.jpg',
+			Ratings: [
+				{ Source: 'Internet Movie Database', Value: '6.9/10' },
+				{ Source: 'Rotten Tomatoes', Value: '72%' },
+				{ Source: 'Metacritic', Value: '59/100' },
+			],
+			Metascore: '59',
+			imdbRating: '6.9',
+			imdbVotes: '693,345',
+			imdbID: 'tt0369610',
+			Type: 'movie',
+			DVD: 'N/A',
+			BoxOffice: '$653,406,625',
+			Production: 'N/A',
+			Website: 'N/A',
+			Response: 'True',
+		},
+	];
 
 	const handleExpand = (index) => {
 		setExpandIndex((prevIndex) => (prevIndex === index ? null : index));
 	};
 
+	let movie = imdb;
+
+	if (movieCat === 'marvel') {
+		movie = marvel;
+	} else if (movieCat === 'gross') {
+		movie = gross;
+	}
+
 	return (
 		<>
-			{top.map((movie, index) => (
-				<Card key={index} className='drop-shadow-lg mb-4 pt-0 border-border'>
-					<div className='flex justify-around rounded-t-xl border-b border-border bg-accent'>
-						<img src={movie.Poster} className='object-scale-down max-h-60' />
+			{movie.map((movie, index) => (
+				<Card
+					key={index}
+					className='drop-shadow-lg m-2 pt-0 border-border lg:flex-row lg:pb-0 lg:max-w-200'
+				>
+					<div className='flex justify-around rounded-t-xl border-b border-border bg-accent lg:rounded-r-xl lg:border-r-2 lg:rounded-b-xl lg:border-b-0 lg:w-80'>
+						<img
+							src={movie.Poster}
+							className='object-scale-down max-h-60 lg:object-fit lg:rounded-xl lg:object-fill lg:max-h-100 lg:max-w-100'
+						/>
 					</div>
-					<CardHeader>
-						<CardTitle>
-							{index + 1}: <span className='text-primary'>{movie.Title}</span>
-						</CardTitle>
-						<CardDescription>{movie.Actors}</CardDescription>
-					</CardHeader>
-					<CardContent>
-						<div
-							className={`${
-								expandIndex === index
-									? 'max-h-100 overflow-hidden'
-									: 'max-h-12 overflow-hidden'
-							} transition-all duration-1000`}
-						>
-							<p className='mb-3'>{movie.Plot}</p>
-							<p className='mb-3'>{movie.Awards}</p>
-							<p>
-								Directed by <span className='font-'>{movie.Director}</span>
-							</p>
-							<p>
-								Box Office:{' '}
-								<span className='font-semibold'>{movie.BoxOffice}</span>
-							</p>
-							<div className='mt-3 flex justify-center'>
-								<Badge className='m-2'>Rated: {movie.Rated}</Badge>
-								<Badge className='m-2'>{movie.Genre.split(', ')[0]}</Badge>
-								<Badge className='m-2'>{movie.Runtime}</Badge>
-							</div>
-						</div>
-					</CardContent>
-					<CardFooter className='flex pl-2 pr-2'>
-						<div className='flex mt-2'>
-							{movie.Ratings.map((rate, idx) => (
-								<div key={idx} className='flex max-h-7 mr-3'>
-									{idx === 0 ? (
-										<img src={Imdb} className='w-15 mb-1' />
-									) : idx === 1 ? (
-										<img src={Rotten} className='w-8 mb-1' />
-									) : (
-										<img src={Meta} className='w-8 mb-1' />
-									)}
-									<p className='text-muted-foreground text-sm mt-0.5'>
-										{rate.Value}
-									</p>
-								</div>
-							))}
-						</div>
-						<div>
-							<Button
-								className='ml-auto drop-shadow-sm'
-								variant='outline'
-								onClick={() => handleExpand(index)}
+					<div className='lg:flex-col lg:pt-4'>
+						<CardHeader className='lg:mb-2'>
+							<CardTitle>
+								{index + 1}: <span className='text-primary'>{movie.Title}</span>
+							</CardTitle>
+							<CardDescription>{movie.Actors}</CardDescription>
+						</CardHeader>
+						<CardContent className=''>
+							<div
+								className={`${
+									expandIndex === index
+										? 'max-h-100 overflow-hidden'
+										: 'max-h-12 overflow-hidden'
+								} transition-all duration-1000 lg:max-h-full`}
 							>
-								{expandIndex === index ? 'Less ▲' : 'More ▼'}
-							</Button>
-						</div>
-					</CardFooter>
+								<p className='mb-3'>{movie.Plot}</p>
+								<p className='mb-3'>{movie.Awards}</p>
+								<p>
+									Directed by <span className='font-'>{movie.Director}</span>
+								</p>
+								<p>
+									Box Office:{' '}
+									<span className='font-semibold'>{movie.BoxOffice}</span>
+								</p>
+								<div className='mt-3 flex justify-center lg:justify-start'>
+									<Badge className='m-2 lg:ml-0'>Rated: {movie.Rated}</Badge>
+									<Badge className='m-2'>{movie.Genre.split(', ')[0]}</Badge>
+									<Badge className='m-2'>{movie.Runtime}</Badge>
+								</div>
+							</div>
+						</CardContent>
+						<CardFooter className='flex pl-2 pr-2 md:m-3'>
+							<div className='flex mt-2'>
+								{movie.Ratings.map((rate, idx) => (
+									<div key={idx} className='flex max-h-7 mr-3'>
+										{idx === 0 ? (
+											<img src={Imdb} className='w-15 mb-1' />
+										) : idx === 1 ? (
+											<img src={Rotten} className='w-8 mb-1' />
+										) : (
+											<img src={Meta} className='w-8 mb-1' />
+										)}
+										<p className='text-muted-foreground text-sm mt-0.5'>
+											{rate.Value}
+										</p>
+									</div>
+								))}
+							</div>
+							<div>
+								<Button
+									className='ml-auto drop-shadow-sm lg:hidden'
+									variant='outline'
+									onClick={() => handleExpand(index)}
+								>
+									{expandIndex === index ? 'Less ▲' : 'More ▼'}
+								</Button>
+							</div>
+						</CardFooter>
+					</div>
 				</Card>
 			))}
 		</>

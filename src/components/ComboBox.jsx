@@ -8,11 +8,12 @@ import {
 } from '@/components/ui/command';
 import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
 import {
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from '@/components/ui/popover';
-import { useState } from 'react';
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { useRef, useState } from 'react';
+import TopTen from './TopTen';
 
 const options = [
 	{
@@ -35,17 +36,26 @@ export default function ComboBox() {
 	const isMobile = useMediaQuery();
 
 	function DesktopMenu() {
+		const buttonRef = useRef();
 		return (
-			<Popover open={open} onOpenChange={setOpen}>
-				<PopoverTrigger asChild>
-					<Button variant='outline' className='w-[150px] justify-start'>
+			<DropdownMenu open={open} onOpenChange={setOpen}>
+				<DropdownMenuTrigger>
+					<Button
+						variant='outline'
+						className='w-[150px] justify-start'
+						ref={buttonRef}
+					>
 						{selectedStatus ? <>{selectedStatus.label}</> : <>IMDb Top 10</>}
 					</Button>
-				</PopoverTrigger>
-				<PopoverContent className='w-[200px] p-0' align='start'>
-					<StatusList setOpen={setOpen} setSelectedStatus={setSelectedStatus} />
-				</PopoverContent>
-			</Popover>
+				</DropdownMenuTrigger>
+				<DropdownMenuContent className='w-[150px] p-0' align='start'>
+					<StatusList
+						setOpen={setOpen}
+						setSelectedStatus={setSelectedStatus}
+						height='h-10'
+					/>
+				</DropdownMenuContent>
+			</DropdownMenu>
 		);
 	}
 
@@ -62,6 +72,7 @@ export default function ComboBox() {
 						<StatusList
 							setOpen={setOpen}
 							setSelectedStatus={setSelectedStatus}
+							height='h-18'
 						/>
 					</div>
 				</DrawerContent>
@@ -69,14 +80,14 @@ export default function ComboBox() {
 		);
 	}
 
-	function StatusList({ setOpen, setSelectedStatus }) {
+	function StatusList({ setOpen, setSelectedStatus, height }) {
 		return (
 			<Command>
 				<CommandList>
 					<CommandGroup>
 						{options.map((group) => (
 							<CommandItem
-								className='h-18'
+								className={height}
 								key={group.value}
 								value={group.value}
 								onSelect={(value) => {
@@ -95,5 +106,16 @@ export default function ComboBox() {
 		);
 	}
 
-	return <>{isMobile !== 'desktop' ? <MobileMenu /> : <DesktopMenu />}</>;
+	return (
+		<div className='mt-5'>
+			<div className='flex justify-center mb-4'>
+				{isMobile !== 'desktop' ? <MobileMenu /> : <DesktopMenu />}
+			</div>
+			<div className='flex flex-wrap justify-around'>
+				<TopTen
+					movieCat={selectedStatus == null ? 'imdb' : selectedStatus.value}
+				/>
+			</div>
+		</div>
+	);
 }
