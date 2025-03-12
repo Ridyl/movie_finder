@@ -5,7 +5,6 @@ const MovieContext = createContext();
 
 const initialState = {
 	movie: null,
-	image: null,
 	loading: false,
 	error: null,
 };
@@ -22,7 +21,6 @@ const movieReducer = (state, action) => {
 			return {
 				...state,
 				movie: action.data,
-				image: action.data.image,
 				loading: false,
 			};
 		case 'FETCH_ERROR':

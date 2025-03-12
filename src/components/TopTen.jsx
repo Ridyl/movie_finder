@@ -12,8 +12,11 @@ import Imdb from './svg/imdb.svg';
 import Rotten from './svg/rotten.svg';
 import Meta from './svg/meta.svg';
 import { useState } from 'react';
+import useSearch from './hooks/findMovie';
+import { Link } from 'react-router-dom';
 
-export default function TopTen({ movieCat, movieSearch }) {
+export default function TopTen({ movieCat }) {
+	const { movie, loading, error } = useSearch();
 	const [expandIndex, setExpandIndex] = useState(null);
 	const imdb = [
 		{
@@ -982,17 +985,17 @@ export default function TopTen({ movieCat, movieSearch }) {
 		setExpandIndex((prevIndex) => (prevIndex === index ? null : index));
 	};
 
-	let movie = imdb;
+	let movieTop10 = !movie ? imdb : movie;
 
 	if (movieCat === 'marvel') {
-		movie = marvel;
+		movieTop10 = marvel;
 	} else if (movieCat === 'gross') {
-		movie = gross;
+		movieTop10 = gross;
 	}
 
 	return (
 		<>
-			{movie.map((movie, index) => (
+			{movieTop10.map((movie, index) => (
 				<Card
 					key={index}
 					className='drop-shadow-lg m-2 pt-0 border-border lg:flex-row lg:pb-0 lg:max-w-200'
@@ -1031,6 +1034,11 @@ export default function TopTen({ movieCat, movieSearch }) {
 									<Badge className='m-2 lg:ml-0'>Rated: {movie.Rated}</Badge>
 									<Badge className='m-2'>{movie.Genre.split(', ')[0]}</Badge>
 									<Badge className='m-2'>{movie.Runtime}</Badge>
+								</div>
+								<div className='flex justify-center mb-2 lg:justify-start'>
+									<Link to={`/movie/${movie.imdbID}`}>
+										<Button variant='outline'>Even More Information</Button>
+									</Link>
 								</div>
 							</div>
 						</CardContent>

@@ -12,7 +12,7 @@ app.get('/api/movie/:id', async (req, res) => {
 	const { id } = req.params;
 	try {
 		const response = await axios.get(
-			`https://www.omdbapi.com/?apikey=${apiKey}&i=${id}`
+			`https://www.omdbapi.com/?i=${id}&plot=full&apikey=${apiKey}`
 		);
 		res.json(response.data);
 	} catch (error) {
