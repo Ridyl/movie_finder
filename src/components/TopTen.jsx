@@ -12,11 +12,9 @@ import Imdb from './svg/imdb.svg';
 import Rotten from './svg/rotten.svg';
 import Meta from './svg/meta.svg';
 import { useState } from 'react';
-import useSearch from './hooks/findMovie';
 import { Link } from 'react-router-dom';
 
 export default function TopTen({ movieCat }) {
-	const { movie, loading, error } = useSearch();
 	const [expandIndex, setExpandIndex] = useState(null);
 	const imdb = [
 		{
@@ -985,7 +983,7 @@ export default function TopTen({ movieCat }) {
 		setExpandIndex((prevIndex) => (prevIndex === index ? null : index));
 	};
 
-	let movieTop10 = !movie ? imdb : movie;
+	let movieTop10 = imdb;
 
 	if (movieCat === 'marvel') {
 		movieTop10 = marvel;

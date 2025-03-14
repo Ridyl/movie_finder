@@ -10,9 +10,10 @@ const apiKey = process.env.OMDB_API_KEY;
 
 app.get('/api/movie/:id', async (req, res) => {
 	const { id } = req.params;
+
 	try {
 		const response = await axios.get(
-			`https://www.omdbapi.com/?i=${id}&plot=full&apikey=${apiKey}`
+			`https://www.omdbapi.com/?apikey=${apiKey}&i=${id}&plot=full`
 		);
 		res.json(response.data);
 	} catch (error) {
@@ -20,11 +21,11 @@ app.get('/api/movie/:id', async (req, res) => {
 	}
 });
 
-app.get('/api/search', async (req, res) => {
-	const { query } = req.query;
+app.get('/api/search/:movieTitle', async (req, res) => {
+	const { movieTitle } = req.params;
 	try {
 		const response = await axios.get(
-			`https://www.omdbapi.com/?apikey=${apiKey}&s=${query}`
+			`https://www.omdbapi.com/?apikey=${apiKey}&s=${movieTitle}`
 		);
 		res.json(response.data);
 	} catch (error) {

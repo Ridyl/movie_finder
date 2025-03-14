@@ -5,8 +5,10 @@ const MovieContext = createContext();
 
 const initialState = {
 	movie: null,
+	title: null,
 	loading: false,
 	error: null,
+	search: null,
 };
 
 const movieReducer = (state, action) => {
@@ -20,7 +22,7 @@ const movieReducer = (state, action) => {
 		case 'FETCH_SUCCESS':
 			return {
 				...state,
-				movie: action.data,
+				movie: action.movie,
 				loading: false,
 			};
 		case 'FETCH_ERROR':

@@ -11,6 +11,7 @@ const useSearch = () => {
 		dispatch({
 			type: 'FETCH_START',
 			loading: true,
+			search: movie,
 		});
 
 		try {
@@ -22,7 +23,7 @@ const useSearch = () => {
 			const movieData = await initial.json();
 			dispatch({
 				type: 'FETCH_SUCCESS',
-				movie: movieData,
+				movie: movieData.Search,
 			});
 		} catch (error) {
 			dispatch({

@@ -6,8 +6,10 @@ import Header from './Header';
 export default function Home() {
 	return (
 		<>
-			<Header />
-			<ComboBox />
+			<div className='p-4'>
+				<Header />
+				<ComboBox />
+			</div>
 		</>
 	);
 }

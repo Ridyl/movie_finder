@@ -1,16 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input.jsx';
 import { useState } from 'react';
-import useSearch from './hooks/findMovie';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
 	const [media, setMedia] = useState('');
-	const { fetchMovie } = useSearch(media);
-
-	const handleSearch = async (event) => {
-		event.preventDefault();
-		await fetchMovie(media);
-	};
 
 	return (
 		<div className='flex flex-col w-full text-center'>
@@ -24,12 +18,12 @@ export default function Header() {
 				onChange={(e) => setMedia(e.target.value)}
 			/>
 			<div className='flex justify-center'>
-				{/* Attach a handleSearch function that returns searched for show*/}
-				<Button className='w-20 m-1' onClick={handleSearch}>
-					Search
-				</Button>
-				{/* Attach a handleSurprise function that returns a random movie or show */}
-				<Button className='w-30 m-1 bg-primary'>Surprise Me!</Button>
+				<Link to={`/search/${media}`}>
+					<Button className='w-20 m-1'>Search</Button>
+				</Link>
+				<Link to={`/`}>
+					<Button className='w-20 m-1 bg-primary'>Home</Button>
+				</Link>
 			</div>
 		</div>
 	);
